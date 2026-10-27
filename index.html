@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>yassine.sbs | منصة ياسين ملوك الرسمية</title>
+<meta name="description" content="yassine.sbs - منصة ياسين ملوك - كتب، خواطر، إبداع - PayPal موثق + كاش بلوس">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0a1a16;--card:#0f2a22;--card2:#112e26;--accent:#1a8a6a;--accent2:#1a5a8a;--gold:#d4af37;--text:#e0e6e3;--muted:#8aa39c}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Cairo',sans-serif;background:var(--bg);color:var(--text);line-height:1.7}
+a{color:inherit;text-decoration:none}
+header{position:sticky;top:0;z-index:50;background:rgba(10,26,22,0.95);backdrop-filter:blur(10px);border-bottom:1px solid #1a3a32;padding:14px 20px;display:flex;justify-content:space-between;align-items:center}
+.logo{font-weight:700;font-size:22px;cursor:pointer;user-select:none}
+.logo span{color:var(--gold)}
+.nav{display:flex;gap:14px;flex-wrap:wrap}
+.nav button{background:transparent;border:1px solid #1e4a40;color:var(--muted);padding:6px 12px;border-radius:20px;cursor:pointer}
+.hero{padding:60px 20px;text-align:center;background:linear-gradient(135deg,#0a2e1f 0%,#0a1f2e 100%)}
+.hero h1{font-family:'Amiri',serif;font-size:42px;margin-bottom:10px}
+.hero p{color:var(--muted);max-width:600px;margin:0 auto 20px}
+.badges{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin-top:14px}
+.badge{background:var(--card);border:1px solid #1e4a40;padding:6px 12px;border-radius:20px;font-size:12px}
+.badge.verified{border-color:var(--gold);color:var(--gold)}
+.container{max-width:1100px;margin:0 auto;padding:20px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px}
+.card{background:var(--card);border:1px solid #1e3a32;border-radius:16px;padding:16px;transition:0.2s}
+.card:hover{border-color:var(--accent)}
+.card h3{margin-bottom:6px}
+.card .meta{font-size:12px;color:var(--muted);margin-bottom:8px}
+.btn{display:inline-block;background:var(--gold);color:#000;padding:8px 16px;border-radius:10px;font-weight:600;cursor:pointer;border:0;margin:4px}
+.btn.ghost{background:transparent;border:1px solid var(--accent);color:var(--text)}
+.donate-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:12px;margin-top:16px}
+.donate-card{background:var(--card2);border:1px solid #1e4a40;border-radius:14px;padding:14px;text-align:center}
+.donate-card h4{color:var(--gold)}
+.footer{text-align:center;padding:30px;color:var(--muted);border-top:1px solid #1a3a32;margin-top:40px;font-size:13px}
+#botBtn{position:fixed;bottom:20px;left:20px;background:var(--accent);color:#fff;width:56px;height:56px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:26px;cursor:pointer;z-index:60;box-shadow:0 4px 14px rgba(0,0,0,0.4)}
+#botBox{position:fixed;bottom:90px;left:20px;width:340px;max-width:90vw;background:var(--card);border:1px solid #1e4a40;border-radius:16px;z-index:60;display:none;flex-direction:column;overflow:hidden}
+#botBox header{padding:12px;border-bottom:1px solid #1e4a40}
+#botMsgs{height:300px;overflow:auto;padding:12px;display:flex;flex-direction:column;gap:8px}
+.msg{padding:8px 12px;border-radius:12px;max-width:85%;font-size:13px}
+.msg.bot{background:var(--card2);align-self:flex-start}
+.msg.user{background:var(--gold);color:#000;align-self:flex-end}
+#botInput{display:flex;border-top:1px solid #1e4a40}
+#botInput input{flex:1;background:transparent;border:0;padding:12px;color:var(--text);outline:none}
+.red{color:#ff6b6b;font-weight:700}
+.modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.7);z-index:100;align-items:center;justify-content:center}
+.modal.active{display:flex}
+.modal-box{background:var(--card);border:1px solid #1e4a40;border-radius:16px;padding:20px;width:90%;max-width:400px}
+.modal-box input{width:100%;padding:10px;margin:8px 0;border-radius:10px;border:1px solid #1e4a40;background:var(--bg);color:var(--text)}
+.list-item{background:var(--card);border:1px solid #1e3a40;border-radius:12px;padding:12px;margin:8px 0;display:flex;justify-content:space-between;align-items:center}
+</style>
+</head>
+<body>
+<header>
+<div class="logo" id="ownerName">ياسين <span>ملوك</span> .sbs</div>
+<div class="nav">
+<button onclick="scrollToSec('books')">مكتبتي</button>
+<button onclick="scrollToSec('khawatir')">خواطري</button>
+<button onclick="scrollToSec('visitors')">جناح الزوار</button>
+<button onclick="scrollToSec('donate')">ادعم</button>
+</div>
+</header>
+
+<section class="hero">
+<h1>yassine.sbs</h1>
+<p>منصة الكاتب ياسين ملوك - كتب، خواطر، وتأملات - نقية بلا أرقام وهمية</p>
+<div class="badges">
+<div class="badge verified">✓ PayPal موثق: paypal.me/YassineMallouk</div>
+<div class="badge verified">✓ كاش بلوس: +212634464009</div>
+<div class="badge">🔒 آمن ومحمي</div>
+<div class="badge">🛡️ مصداقية</div>
+</div>
+</section>
+
+<div class="container">
+<section id="books"><h2>📚 مكتبتي - كتبي</h2><div id="booksGrid" class="grid"></div></section>
+<section id="khawatir" style="margin-top:40px"><h2>💭 خواطري</h2><div id="khawatirGrid" class="grid"></div></section>
+
+<section id="visitors" style="margin-top:40px"><h2>✨ جناح الزوار - اترك أثرك</h2>
+<div class="card">
+<input id="vName" placeholder="اسمك" style="width:100%;padding:10px;margin:6px 0;border-radius:10px;border:1px solid #1e4a40;background:var(--bg);color:var(--text)">
+<input id="vCity" placeholder="مدينتك" style="width:100%;padding:10px;margin:6px 0;border-radius:10px;border:1px solid #1e4a40;background:var(--bg);color:var(--text)">
+<textarea id="vMsg" placeholder="رسالتك أو أثرك..." style="width:100%;padding:10px;margin:6px 0;border-radius:10px;border:1px solid #1e4a40;background:var(--bg);color:var(--text);min-height:80px"></textarea>
+<button class="btn" onclick="addVisitor()">أرسل أثري</button>
+</div>
+<div id="visitorsGrid" class="grid" style="margin-top:16px"></div>
+</section>
+
+<section id="donate" style="margin-top:40px"><h2>💳 ادعم الإبداع - PayPal + كاش بلوس</h2>
+<p style="color:var(--muted)">اختر ما يناسبك - PayPal موثق أو كاش بلوس +212634464009 - كلاهما آمن وموثق</p>
+<div class="donate-grid">
+<div class="donate-card"><h4>☕ 20 درهم</h4><p>قهوة إبداعية</p><button class="btn" onclick="donate('20')">PayPal</button><div style="font-size:11px;margin-top:6px">أو كاش بلوس: +212634464009</div></div>
+<div class="donate-card"><h4>📖 50 درهم</h4><p>كتاب</p><button class="btn" onclick="donate('50')">PayPal</button><div style="font-size:11px;margin-top:6px">أو كاش بلوس</div></div>
+<div class="donate-card"><h4>✨ 100 درهم</h4><p>دعم مميز</p><button class="btn" onclick="donate('100')">PayPal</button></div>
+<div class="donate-card"><h4>🎁 200 درهم</h4><p>هدية إبداع</p><button class="btn" onclick="donate('200')">PayPal</button></div>
+<div class="donate-card"><h4>💎 500 درهم</h4><p>راعي الإبداع</p><button class="btn" onclick="donate('500')">PayPal</button></div>
+<div class="donate-card"><h4>🌟 مفتوح</h4><p>أنت تختار</p><button class="btn" onclick="donate('')">PayPal</button><div style="font-size:11px">+212634464009</div></div>
+</div>
+</section>
+</div>
+
+<div class="footer">
+yassine.sbs | PayPal موثق paypal.me/YassineMallouk | كاش بلوس +212634464009 | © Yassine Mallouk 2026<br>
+<span style="font-size:11px">أخضر غامق ممزوج مع أزرق - الداكنة الخزية - أمان عالي</span>
+</div>
+
+<div id="botBtn" onclick="toggleBot()">🤖</div>
+<div id="botBox">
+<header><strong>مساعد ياسين</strong> <span style="font-size:11px;color:var(--muted)">يرشدك + يحمي النقط الحمراء</span></header>
+<div id="botMsgs"><div class="msg bot">مرحبا! أنا مساعد ياسين ملوك 🤖 أساعدك في خطط القراءة، الدعم عبر PayPal أو كاش بلوس، وأي شيء تحتاجه. اسألني!</div></div>
+<div style="padding:8px;display:flex;gap:6px;flex-wrap:wrap">
+<button class="btn ghost" style="font-size:11px" onclick="botQuick('ما هي كتبك؟')">📚 الكتب</button>
+<button class="btn ghost" style="font-size:11px" onclick="botQuick('كيف أدعم؟')">💳 الدعم</button>
+<button class="btn ghost" style="font-size:11px" onclick="botQuick('كاش بلوس')">📱 كاش بلوس</button>
+<button class="btn ghost" style="font-size:11px" onclick="botQuick('خطة قراءة')">🗺️ خطتي</button>
+</div>
+<div id="botInput"><input id="botText" placeholder="اكتب سؤالك..." onkeydown="if(event.key==='Enter')sendBot()"><button class="btn" onclick="sendBot()">إرسال</button></div>
+</div>
+
+<div class="modal" id="loginModal"><div class="modal-box">
+<h3>دخول المالك</h3>
+<p style="font-size:12px;color:var(--muted)">خانتين خاويتين - أنت تعرف</p>
+<input id="pass1" type="password" placeholder="">
+<input id="pass2" type="password" placeholder="">
+<button class="btn" onclick="checkLogin()">دخول</button>
+<button class="btn ghost" onclick="closeLogin()">إغلاق</button>
+<div id="loginMsg" style="font-size:12px;margin-top:8px;color:#ff6b6b"></div>
+</div></div>
+
+<div class="modal" id="ownerModal"><div class="modal-box" style="max-width:700px;width:95%;max-height:90vh;overflow:auto">
+<h3>لوحة التحكم - ياسين ملوك</h3>
+<div style="display:flex;gap:6px;flex-wrap:wrap;margin:12px 0">
+<button class="btn" onclick="showOwnerTab('editBooks')">✍️ مكتبتي</button>
+<button class="btn" onclick="showOwnerTab('editVisitors')">✨ جناح الزوار</button>
+<button class="btn ghost" onclick="closeOwner()">إغلاق</button>
+</div>
+<div id="ownerEditBooks">
+<h4>إضافة كتاب/خاطرة</h4>
+<input id="bTitle" placeholder="العنوان" style="width:100%;padding:8px;margin:4px 0">
+<select id="bCat" style="width:100%;padding:8px;margin:4px 0"><option>كتب</option><option>خواطر</option><option>روايات</option><option>مقالات</option><option>تأملات</option></select>
+<textarea id="bDesc" placeholder="الوصف / المحتوى" style="width:100%;padding:8px;margin:4px 0;min-height:100px"></textarea>
+<button class="btn" onclick="addBook()">حفظ</button>
+<div id="ownerBooksList"></div>
+</div>
+<div id="ownerVisitors" style="display:none">
+<h4>طلبات الزوار</h4>
+<div id="ownerVisitorsList"></div>
+</div>
+</div></div>
+
+<script>
+let books = JSON.parse(localStorage.getItem('ys_books')||'[{"title":"رحلة في الذات","cat":"كتب","desc":"كتاب عن التأمل والوعي...","date":"2026-10-20"},{"title":"خاطرة المساء","cat":"خواطر","desc":"في هدوء الليل...","date":"2026-10-22"},{"title":"بين السطور","cat":"مقالات","desc":"مقال عن الكتابة...","date":"2026-10-24"}]');
+let visitors = JSON.parse(localStorage.getItem('ys_visitors')||'[]');
+let clickCount=0, clickTimer=null;
+document.getElementById('ownerName').addEventListener('click',()=>{
+clickCount++; clearTimeout(clickTimer);
+clickTimer=setTimeout(()=>clickCount=0,3000);
+if(clickCount>=10){clickCount=0; openLogin();}
+});
+
+function openLogin(){document.getElementById('loginModal').classList.add('active');}
+function closeLogin(){document.getElementById('loginModal').classList.remove('active');document.getElementById('loginMsg').innerText='';}
+function checkLogin(){
+const p1=document.getElementById('pass1').value, p2=document.getElementById('pass2').value;
+if(p1==='Ya26MK000@' && p2==='Ya26MK000@'){closeLogin(); openOwner();} else {document.getElementById('loginMsg').innerText='رمز غير صحيح';}
+}
+function openOwner(){document.getElementById('ownerModal').classList.add('active'); renderOwnerBooks(); renderOwnerVisitors();}
+function closeOwner(){document.getElementById('ownerModal').classList.remove('active');}
+function showOwnerTab(t){document.getElementById('ownerEditBooks').style.display=t==='editBooks'?'block':'none';document.getElementById('ownerVisitors').style.display=t==='editVisitors'?'block':'none';}
+
+function renderBooks(){
+const g=document.getElementById('booksGrid'); g.innerHTML='';
+books.filter(b=>b.cat!=='خواطر').forEach(b=>{g.innerHTML+=`<div class="card"><h3>${b.title}</h3><div class="meta">${b.cat} • ${b.date}</div><p style="font-size:13px;color:var(--muted)">${b.desc.slice(0,120)}</p><div style="margin-top:10px"><button class="btn ghost" onclick="readBook('${b.title}')">اقرأ</button><button class="btn" onclick="donate('50')">ادعم</button></div></div>`});
+const kg=document.getElementById('khawatirGrid'); kg.innerHTML='';
+books.filter(b=>b.cat==='خواطر').forEach(b=>{kg.innerHTML+=`<div class="card"><h3>${b.title}</h3><div class="meta">${b.date}</div><p>${b.desc}</p></div>`});
+}
+function addBook(){
+const t=document.getElementById('bTitle').value, c=document.getElementById('bCat').value, d=document.getElementById('bDesc').value;
+if(!t||!d) return;
+books.unshift({title:t,cat:c,desc:d,date:new Date().toISOString().slice(0,10)});
+localStorage.setItem('ys_books',JSON.stringify(books)); renderBooks(); renderOwnerBooks();
+document.getElementById('bTitle').value='';document.getElementById('bDesc').value='';
+}
+function renderOwnerBooks(){
+const el=document.getElementById('ownerBooksList'); el.innerHTML='';
+books.forEach((b,i)=>{el.innerHTML+=`<div class="list-item"><div><b>${b.title}</b> <small>${b.cat}</small></div><button class="btn ghost" onclick="delBook(${i})">حذف</button></div>`});
+}
+function delBook(i){books.splice(i,1);localStorage.setItem('ys_books',JSON.stringify(books));renderBooks();renderOwnerBooks();}
+function readBook(t){alert('قراءة: '+t+'\n\n'+(books.find(b=>b.title===t)?.desc||''));}
+
+function renderVisitors(){
+const g=document.getElementById('visitorsGrid'); g.innerHTML='';
+visitors.filter(v=>v.approved).forEach(v=>{g.innerHTML+=`<div class="card"><b>${v.name}</b> <small>${v.city}</small><p style="margin-top:6px">${v.msg}</p></div>`});
+}
+function addVisitor(){
+const n=document.getElementById('vName').value, c=document.getElementById('vCity').value, m=document.getElementById('vMsg').value;
+if(!n||!m) return;
+visitors.unshift({name:n,city:c,msg:m,approved:false,date:new Date().toISOString().slice(0,10)});
+localStorage.setItem('ys_visitors',JSON.stringify(visitors)); renderOwnerVisitors();
+alert('تم إرسال أثرك - سيظهر بعد موافقة ياسين'); 
+document.getElementById('vName').value='';document.getElementById('vCity').value='';document.getElementById('vMsg').value='';
+}
+function renderOwnerVisitors(){
+const el=document.getElementById('ownerVisitorsList'); el.innerHTML='';
+visitors.forEach((v,i)=>{el.innerHTML+=`<div class="list-item"><div><b>${v.name}</b> - ${v.city}<br><small>${v.msg}</small></div><div><button class="btn" onclick="approveV(${i})">✓</button><button class="btn ghost" onclick="delV(${i})">✗</button></div></div>`});
+}
+function approveV(i){visitors[i].approved=true;localStorage.setItem('ys_visitors',JSON.stringify(visitors));renderVisitors();renderOwnerVisitors();}
+function delV(i){visitors.splice(i,1);localStorage.setItem('ys_visitors',JSON.stringify(visitors));renderVisitors();renderOwnerVisitors();}
+
+function scrollToSec(id){document.getElementById(id).scrollIntoView({behavior:'smooth'});}
+function donate(amt){
+const url = amt ? `https://paypal.me/YassineMallouk/${amt}` : 'https://paypal.me/YassineMallouk';
+window.open(url,'_blank');
+}
+
+function toggleBot(){const b=document.getElementById('botBox'); b.style.display=b.style.display==='flex'?'none':'flex';}
+function botQuick(q){document.getElementById('botText').value=q; sendBot();}
+function sendBot(){
+const input=document.getElementById('botText'); const q=input.value.trim(); if(!q) return;
+const msgs=document.getElementById('botMsgs');
+msgs.innerHTML+=`<div class="msg user">${q}</div>`;
+let answer='';
+const lower=q.toLowerCase();
+if(lower.includes('كود')||lower.includes('دخول')||lower.includes('ya26')||lower.includes('لوحة')||lower.includes('تحكم')||lower.includes('باسورد')){
+answer=`<span class="red">🔴 نقطة حمراء — لا يمكن تجاوزها</span><br>معلومات صاحب المنصة محمية. كيف أساعدك في خطتك للقراءة أو الدعم عبر PayPal / كاش بلوس +212634464009؟`;
+} else if(lower.includes('كتاب')||lower.includes('مكتبة')){
+answer=`لديك ${books.length} أعمال في yassine.sbs - كتب وخواطر. تصفح مكتبتي فوق، أو أخبرني ما نوع القراءة التي تحب لأرشدك لخطة.`;
+} else if(lower.includes('دعم')||lower.includes('paypal')||lower.includes('تبرع')){
+answer=`ادعم عبر:<br>• PayPal موثق: <b>paypal.me/YassineMallouk</b> - 20/50/100/200/500 درهم<br>• كاش بلوس/وفاكاش: <b>+212634464009</b><br>كلاهما آمن وموثق 🔒`;
+} else if(lower.includes('كاش')||lower.includes('بلوس')||lower.includes('wafacash')){
+answer=`كاش بلوس متاح: حول لـ <b>+212634464009</b> - باسم ياسين ملوك - مع إيصال رسمي. أو PayPal: paypal.me/YassineMallouk`;
+} else if(lower.includes('خطة')||lower.includes('قراءة')){
+answer=`خطة مقترحة:<br>• الأسبوع 1-3: كتاب "رحلة في الذات"<br>• 15 دقيقة يوميا<br>• خاطرة كل مساء<br>أخبرني وقتك المتاح أخصص لك خطة.`;
+} else {
+answer=`أنا مساعد yassine.sbs 🤖 أساعدك في: خطط القراءة، الدعم PayPal/كاش بلوس +212634464009، تصفح الكتب والخواطر. اسألني أي شيء مفيد!`;
+}
+setTimeout(()=>{msgs.innerHTML+=`<div class="msg bot">${answer}</div>`; msgs.scrollTop=msgs.scrollHeight;},400);
+input.value=''; msgs.scrollTop=msgs.scrollHeight;
+}
+
+renderBooks(); renderVisitors();
+</script>
+</body>
+</html>
